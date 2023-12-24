@@ -17,8 +17,9 @@ function Book(title, author, pageCount, read){
     this.read = read;
 }
 
-function addBook(){
-
+function addBook(title, author, pageCount, read){
+    const book = new Book(title, author, pageCount, read);
+    myLibrary.push(book);
 }
 
 addButton.addEventListener('click', () => {
