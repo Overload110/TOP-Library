@@ -20,6 +20,10 @@ function Book(title, author, pageCount, read){
 function addBook(title, author, pageCount, read){
     const book = new Book(title, author, pageCount, read);
     myLibrary.push(book);
+    bookTitle.value = "";
+    bookAuthor.value = "";
+    bookPages.value = 0;
+    bookRead.checked =false;
 }
 
 addButton.addEventListener('click', () => {
@@ -33,4 +37,10 @@ addButton.addEventListener('click', () => {
 
   submitButton.addEventListener('click', e => {
     e.preventDefault();
+    const trimTitle = bookTitle.value.trim();
+    const trimAuthor = bookAuthor.value.trim();
+    if(trimTitle != "" && trimAuthor != ""){
+        addBook(bookTitle.value, bookAuthor.value, bookPages.value, bookRead.value);
+        dialog.close();
+    }
   });
