@@ -22,12 +22,16 @@ function addBook(title, author, pageCount, read){
   if(!isInLibrary(title)){
     const book = new Book(title, author, pageCount, read);
     myLibrary.push(book);
-    bookTitle.value = "";
-    bookAuthor.value = "";
-    bookPages.value = 0;
-    bookRead.checked =false;
+    clearDialog();
   }
 }
+
+function clearDialog(){
+  bookTitle.value = "";
+  bookAuthor.value = "";
+  bookPages.value = '';
+  bookRead.checked =false;
+};
 
 addButton.addEventListener('click', () => {
     dialog.showModal();
@@ -35,13 +39,14 @@ addButton.addEventListener('click', () => {
 
   cancelButton.addEventListener('click', (e) =>{
     e.preventDefault();
+    clearDialog();
     dialog.close();
   })
 
   submitButton.addEventListener('click', e => {
     e.preventDefault();
-    const trimTitle = bookTitle.value.trim();
-    const trimAuthor = bookAuthor.value.trim();
+    const trimTitle = bookTitle.value.replace(/\s/g, '');
+    const trimAuthor = bookAuthor.value.replace(/\s/g, '');
     if(trimTitle != "" && trimAuthor != ""){
       if(!isInLibrary(bookTitle.value)){
         addBook(bookTitle.value, bookAuthor.value, bookPages.value, bookRead.checked);
@@ -55,7 +60,7 @@ addButton.addEventListener('click', () => {
 
   function isInLibrary(newBook){
     return myLibrary.some((book) => book.title === newBook);
-  }
+  };
 
   function showLibrary(){
     library.innerHTML = '';
@@ -93,17 +98,19 @@ addButton.addEventListener('click', () => {
         div.appendChild(cardRead);
         div.appendChild(removeBook);
         library.appendChild(div);
-
+        //console.log(myLibrary[item]);
     }
-  }
+  };
 
   function findBook(title){
-    return myLibrary.find((book) => book.title = title);
-  }
+    return myLibrary.find((book) => book.title === title);
+  };
 
   function toggleRead(e){
     let button = e.target;
+    console.log(findBook(e.target.parentNode.firstChild.innerHTML));
     let book = findBook(button.parentNode.firstChild.innerHTML);
+    //console.log(book);
       if(button.classList.contains("unread")){
         button.classList.remove("unread");
         button.classList.add("read");
@@ -115,11 +122,12 @@ addButton.addEventListener('click', () => {
         button.innerHTML = "Unread";
         book.read = false;
       }
-  }
+  };
 
   function deleteBook(e){
-    let book = findBook(e.target.parentNode.firstChild.innerHTML);
-    let index = myLibrary.indexOf(book);
+    let deleting = findBook(e.target.parentNode.firstChild.innerHTML);
+    let index = myLibrary.indexOf(deleting);
+    console.log(index);
     myLibrary.splice(index, 1);
     showLibrary();
-  }
+  };
