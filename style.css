@@ -1,0 +1,80 @@
+body{
+    background-color: #704214;
+    margin: 0px;
+}
+
+.header, form{
+    text-align: center;
+    background-color:#ffeacb;
+}
+
+.header{
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 5px 5px 1px #29292954;
+}
+
+#addBook{
+    
+    background-color: #704214;
+}
+
+#library{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+form, body{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+dialog{
+    border-radius: 25px;
+    border: none;
+    box-shadow: 5px 5px 5px 1px #29292954;
+    background-color:#ffeacb;
+}
+
+.read{
+    background-color: green;
+}
+
+.unread{
+    background-color: red;
+}
+
+h4, p{
+    margin: 0px;
+    text-align: center;
+    
+}
+
+.book{
+    width: 150px;
+    background-color: #ffeacb;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px 1px #29292954;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px;
+}
+
+.book>button{
+    width: 100px;
+    border-radius: 10px;
+}
+
+button{
+    background-color: #142b70;
+    color: #ffeacb;
+    border: none;
+    border-radius: 25px;
+    height: 25px;
+}
