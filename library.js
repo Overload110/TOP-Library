@@ -59,7 +59,7 @@ addButton.addEventListener('click', () => {
   });
 
   function isInLibrary(newBook){
-    return myLibrary.some((book) => book.title === newBook);
+    return myLibrary.some((book) => book.title.replace(/\s/g, '') === newBook.replace(/\s/g, ''));
   };
 
   function showLibrary(){
