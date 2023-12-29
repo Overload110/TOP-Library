@@ -11,11 +11,13 @@ const bookRead = document.getElementById('read');
 const library = document.getElementById('library');
 
 
-function Book(title, author, pageCount, read){
-    this.title = title;
-    this.author = author;
-    this.pageCount = pageCount;
-    this.read = read;
+class Book{
+    constructor(title, author, pageCount, read){
+      this.title = title;
+      this.author = author;
+      this.pageCount = pageCount;
+      this.read = read;
+    }
 }
 
 function addBook(title, author, pageCount, read){
@@ -31,6 +33,7 @@ function clearDialog(){
   bookAuthor.value = "";
   bookPages.value = '';
   bookRead.checked =false;
+  
 };
 
 addButton.addEventListener('click', () => {
@@ -98,7 +101,6 @@ addButton.addEventListener('click', () => {
         div.appendChild(cardRead);
         div.appendChild(removeBook);
         library.appendChild(div);
-        //console.log(myLibrary[item]);
     }
   };
 
@@ -108,9 +110,7 @@ addButton.addEventListener('click', () => {
 
   function toggleRead(e){
     let button = e.target;
-    console.log(findBook(e.target.parentNode.firstChild.innerHTML));
     let book = findBook(button.parentNode.firstChild.innerHTML);
-    //console.log(book);
       if(button.classList.contains("unread")){
         button.classList.remove("unread");
         button.classList.add("read");
@@ -127,7 +127,6 @@ addButton.addEventListener('click', () => {
   function deleteBook(e){
     let deleting = findBook(e.target.parentNode.firstChild.innerHTML);
     let index = myLibrary.indexOf(deleting);
-    console.log(index);
     myLibrary.splice(index, 1);
     showLibrary();
   };
